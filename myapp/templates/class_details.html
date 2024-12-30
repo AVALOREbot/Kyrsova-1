@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Класс {{ class_obj.class_number }}{{ class_obj.class_letter }}</title>
+</head>
+<body>
+    <h1>Класс {{ class_obj.class_number }}{{ class_obj.class_letter }}</h1>
+    <h2>Количество учеников: {{ class_obj.student_count }}</h2>
+
+    <h3>Список учеников:</h3>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.first_name }} {{ student.last_name }} (ID: {{ student.student_id }})</li>
+        {% empty %}
+            <li>В этом классе пока нет учеников.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'students_list' %}">Назад к списку классов</a>
+</body>
+</html>

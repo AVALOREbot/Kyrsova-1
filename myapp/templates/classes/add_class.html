@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Добавить новый класс</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="class_number" class="form-label">Номер класса</label>
+        <input type="number" name="class_number" id="class_number" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="class_letter" class="form-label">Буква класса</label>
+        <input type="text" name="class_letter" id="class_letter" class="form-control" maxlength="1" required>
+    </div>
+    <div class="mb-3">
+        <label for="student_count" class="form-label">Количество учеников (необязательно)</label>
+        <input type="number" name="student_count" id="student_count" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Добавить</button>
+    <a href="{% url 'classes_list' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

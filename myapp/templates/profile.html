@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .user-info {
+            margin-bottom: 20px;
+        }
+        .user-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Профиль пользователя</h2>
+
+        {% if user %}
+        <div class="user-info">
+            <p><strong>ID:</strong>
+                {% if user_type == "student" %}
+                    {{ user.student_id }}
+                {% elif user_type == "teacher" %}
+                    {{ user.teacher_id }}
+                {% elif user_type == "admin" %}
+                    {{ user.administrator_id }}
+                {% endif %}
+            </p>
+            <p><strong>Имя:</strong>
+                {% if user_type == "student" %}
+                    {{ user.first_name }}
+                {% elif user_type == "teacher" %}
+                    {{ user.first_name }}
+                {% endif %}
+            </p>
+            <p><strong>Фамилия:</strong>
+                {% if user_type == "student" %}
+                    {{ user.last_name }}
+                {% elif user_type == "teacher" %}
+                    {{ user.last_name }}
+                {% endif %}
+            </p>
+            <p><strong>Дата рождения:</strong>
+                {% if user_type == "student" %}
+                    {{ user.date_of_birth }}
+                {% endif %}
+            </p>
+            <p><strong>Адрес:</strong>
+                {% if user_type == "student" %}
+                    {{ user.address }}
+                {% endif %}
+            </p>
+            <p><strong>Класс:</strong>
+                {% if user_type == "student" %}
+                    {{ user.student_class.class_number }}{{ user.student_class.class_letter }}
+                {% endif %}
+            </p>
+            <p><strong>Предмет:</strong>
+                {% if user_type == "teacher" %}
+                    {{ user.subject.name }}
+                {% endif %}
+            </p>
+            <p><strong>Кабинет:</strong>
+                {% if user_type == "teacher" %}
+                    {{ user.office.room_number }}
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+
+        <h3>Смена пароля</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="password" name="old_password" placeholder="Старый пароль" required>
+            <input type="password" name="new_password" placeholder="Новый пароль" required>
+            <input type="password" name="confirm_password" placeholder="Подтверждение нового пароля" required>
+            <button type="submit">Сменить пароль</button>
+        </form>
+    </div>
+</body>
+</html>

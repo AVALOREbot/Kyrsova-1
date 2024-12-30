@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Добавить предмет</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="name">Название предмета:</label>
+        <input type="text" name="name" id="name" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Сохранить</button>
+    <a href="{% url 'subjects_list' %}" class="btn btn-secondary mt-2">Назад</a>
+</form>
+{% endblock %}

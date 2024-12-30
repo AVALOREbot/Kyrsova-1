@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Користувачі</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Користувачі</h1>
+
+        <div class="menu">
+            <a href="{% url 'teachers_list' %}">Вчителі</a>
+            <a href="{% url 'students_list' %}">Учні по класах</a>
+            <a href="{% url 'administrators_list' %}">Адміністратори</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="mb-4 text-center">Список класів</h1>
+    <a href="{% url 'add_class' %}" class="btn btn-primary mb-3">Додати клас</a>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>№</th>
+                <th>Літера</th>
+                <th>Кількість учнів</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for class in classes %}
+            <tr>
+                <td>{{ class.class_number }}</td>
+                <td>{{ class.class_letter }}</td>
+                <td>{{ class.student_count }}</td>
+                <td>
+                    <a href="{% url 'delete_class' class.class_id %}" class="btn btn-danger btn-sm">Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
